@@ -37,7 +37,6 @@ This project is fully local: **no external APIs, no cloud dependencies, no API k
 ## 🛠 Installation
 
 1. Clone the repository:
-
 ```bash
 git clone <repository-url>
 cd ai-coding-assistant
