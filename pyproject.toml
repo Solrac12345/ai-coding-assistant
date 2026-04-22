@@ -77,7 +77,6 @@ multi-line-mode = 3
 include-trailing-comma = true
 force-grid-wrap = 0
 use-parentheses = true
-ensure-newline-before-comments = true
 
 [tool.mypy]
 python_version = "3.11"
