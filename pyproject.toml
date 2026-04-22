@@ -73,10 +73,6 @@ ignore = [
 
 [tool.ruff.isort]
 profile = "black"
-multi-line-mode = 3
-include-trailing-comma = true
-force-grid-wrap = 0
-use-parentheses = true
 
 [tool.mypy]
 python_version = "3.11"
