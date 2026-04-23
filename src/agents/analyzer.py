@@ -45,8 +45,7 @@ class AnalyzerAgent:
         has_classes = any(isinstance(n, ast.ClassDef) for n in ast.walk(tree))
         has_loops = any(isinstance(n, (ast.For, ast.While)) for n in ast.walk(tree))
         has_io = any(
-            isinstance(n, ast.Call) and getattr(n.func, "id", "") == "print"
-            for n in ast.walk(tree)
+            isinstance(n, ast.Call) and getattr(n.func, "id", "") == "print" for n in ast.walk(tree)
         )
 
         if has_functions:
