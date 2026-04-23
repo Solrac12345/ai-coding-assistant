@@ -6,11 +6,15 @@ from src.supervisor.controller import Supervisor
 
 
 def test_supervisor_pipeline_runs():
-    state = State(code_input="print('hello')")
+    state = State(code="print('hello')")
+
+    # Updated to match your new Supervisor(agents=[...]) signature
     supervisor = Supervisor(
-        analyzer_cls=AnalyzerAgent,
-        optimizer_cls=OptimizerAgent,
-        doc_agent_cls=DocAgent,
+        agents=[
+            AnalyzerAgent(),
+            OptimizerAgent(),
+            DocAgent(),
+        ]
     )
 
     final_state = supervisor.run(state)

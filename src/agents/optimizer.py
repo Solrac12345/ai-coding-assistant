@@ -1,19 +1,13 @@
+from src.logging.logger import Logger
 from src.state.state import State
 
 
 class OptimizerAgent:
     """
     EN:
-        OptimizerAgent is responsible for improving or refactoring the input code.
-        In Phase 2, this implementation is intentionally simple and deterministic.
-        It prepares the structure for later integration with formatting tools
-        (e.g., Black) and more advanced optimization strategies.
-
+        Optimizer agent that improves the input code.
     FR:
-        OptimizerAgent est responsable d'améliorer ou de refactoriser le code d'entrée.
-        En Phase 2, cette implémentation est volontairement simple et déterministe.
-        Elle prépare la structure pour une intégration ultérieure avec des outils
-        de formatage (par ex. Black) et des stratégies d'optimisation plus avancées.
+        Agent optimiseur qui améliore le code d'entrée.
     """
 
     def run(self, state: State) -> State:
@@ -31,24 +25,15 @@ class OptimizerAgent:
             transformation minimale et sûre.
         """
 
-        original_code = state.code_input
+        # Changed from state.code_input to state.code
+        original_code = state.code
+        Logger.info("Optimizing code", agent="OptimizerAgent")
 
-        # EN:
-        #   Phase 2 placeholder:
-        #   - Strip trailing whitespace
-        #   - Ensure file ends with a newline
-        #
-        # FR:
-        #   Bouchon pour la Phase 2 :
-        #   - Supprimer les espaces en fin de ligne
-        #   - S'assurer que le fichier se termine par une nouvelle ligne
+        # Simple optimization: ensure code ends with newline
+        if not original_code.endswith("\n"):
+            state.optimized_code = original_code + "\n"
+        else:
+            state.optimized_code = original_code
 
-        lines = original_code.splitlines()
-        cleaned_lines = [line.rstrip() for line in lines]
-        optimized = "\n".join(cleaned_lines)
-
-        if not optimized.endswith("\n") and optimized != "":
-            optimized += "\n"
-
-        state.optimized_code = optimized or original_code
+        Logger.info(f"Optimized {len(original_code)} characters", agent="OptimizerAgent")
         return state

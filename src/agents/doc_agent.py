@@ -18,16 +18,17 @@ class DocAgent:
         """
         EN:
             Main entry point for the DocAgent.
-            It reads `code_input`, `analysis`, and `optimized_code` from the state
+            It reads `code`, `analysis`, and `optimized_code` from the state
             and produces a short documentation block.
 
         FR:
             Point d'entrée principal pour le DocAgent.
-            Il lit `code_input`, `analysis` et `optimized_code` depuis l'état
+            Il lit `code`, `analysis` et `optimized_code` depuis l'état
             et produit un court bloc de documentation.
         """
 
-        code_preview = state.code_input.strip()
+        # FIX: Changed state.code_input to state.code
+        code_preview = state.code.strip()
         if len(code_preview) > 200:
             code_preview = code_preview[:200] + " ..."
 
