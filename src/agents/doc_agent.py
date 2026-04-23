@@ -1,51 +1,71 @@
+from __future__ import annotations
+
+import textwrap
+from typing import Any
+
+from src.logging.logger import Logger
 from src.state.state import State
 
 
 class DocAgent:
-    """
-    EN:
-        DocAgent is responsible for generating human-readable documentation
-        based on the input code and the analysis produced by previous agents.
-        In Phase 2, it creates a simple textual summary.
+    """Generate human-readable documentation from state."""
 
-    FR:
-        DocAgent est responsable de générer une documentation lisible
-        à partir du code d'entrée et de l'analyse produite par les agents précédents.
-        En Phase 2, il crée un résumé textuel simple.
-    """
+    def _format_section(self, title: str, body: str | None) -> str:
+        if not body:
+            return ""
+        return f"### {title}\n{body.strip()}\n"
+
+    def _build_summary(self, state: State) -> str:
+        lines: list[str] = []
+
+        if state.language:
+            lines.append(f"- **Language:** {state.language}")
+        if state.complexity:
+            lines.append(f"- **Estimated complexity:** {state.complexity}")
+        if state.tags:
+            tags = ", ".join(state.tags)
+            lines.append(f"- **Tags:** {tags}")
+
+        analysis_meta: dict[str, Any] = state.metadata.get("analysis", {})
+        top_names = analysis_meta.get("top_names") or []
+        node_count = analysis_meta.get("node_count")
+
+        if top_names:
+            lines.append(f"- **Key identifiers:** {', '.join(top_names)}")
+        if node_count is not None:
+            lines.append(f"- **AST node count:** {node_count}")
+
+        return "\n".join(lines)
 
     def run(self, state: State) -> State:
-        """
-        EN:
-            Main entry point for the DocAgent.
-            It reads `code`, `analysis`, and `optimized_code` from the state
-            and produces a short documentation block.
+        Logger.info("Generating documentation", agent="DocAgent")
 
-        FR:
-            Point d'entrée principal pour le DocAgent.
-            Il lit `code`, `analysis` et `optimized_code` depuis l'état
-            et produit un court bloc de documentation.
-        """
+        original_preview = textwrap.shorten(
+            state.code.replace("\n", " "), width=120, placeholder="..."
+        )
 
-        # FIX: Changed state.code_input to state.code
-        code_preview = state.code.strip()
-        if len(code_preview) > 200:
-            code_preview = code_preview[:200] + " ..."
+        summary = self._build_summary(state)
 
-        analysis = state.analysis or "No analysis available."
-        optimized_present = bool(state.optimized_code)
+        parts: list[str] = []
 
-        doc_lines = [
-            "AI Coding Assistant — Documentation Summary",
-            "",
-            "Original code preview:",
-            code_preview or "<empty code>",
-            "",
-            "Analysis:",
-            analysis,
-            "",
-            "Optimized code generated: " + ("yes" if optimized_present else "no"),
-        ]
+        parts.append("# AI Coding Assistant — Documentation\n")
 
-        state.documentation = "\n".join(doc_lines)
+        parts.append("## Overview\n")
+        parts.append(f"Original code preview:\n```python\n{original_preview}\n```\n")
+
+        if summary:
+            parts.append("## Summary\n")
+            parts.append(summary + "\n")
+
+        if state.analysis:
+            parts.append(self._format_section("Detailed Analysis", state.analysis))
+
+        if state.optimized_code:
+            parts.append("## Optimized Code\n")
+            parts.append("```python\n" + state.optimized_code.strip() + "\n```\n")
+
+        doc = "\n".join(p for p in parts if p.strip())
+
+        state.documentation = doc
+        Logger.info("Documentation generated", agent="DocAgent")
         return state
