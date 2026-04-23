@@ -1,5 +1,5 @@
-from src.state.state import State
 from src.logging.logger import Logger
+from src.state.state import State
 
 
 class AnalyzerAgent:
