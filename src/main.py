@@ -5,53 +5,25 @@ from src.state.state import State
 from src.supervisor.controller import Supervisor
 
 
-def main():
-    """
-    EN:
-        Entry point of the AI Coding Assistant (Phase 2).
-        This function builds an initial State with sample code, runs the
-        Supervisor pipeline (Analyzer → Optimizer → DocAgent), and prints
-        the results to the console.
+def main() -> None:
+    """Entry point for the AI Coding Assistant CLI."""
+    code_input = input("Enter your code:\n")
 
-    FR:
-        Point d'entrée de l'assistant IA (Phase 2).
-        Cette fonction construit un état initial avec du code d'exemple,
-        exécute le pipeline du Superviseur (Analyzer → Optimizer → DocAgent)
-        et affiche les résultats dans la console.
-    """
+    state = State(code=code_input)
 
-    sample_code = """
-def add(a, b):
-    # TODO: handle type checking
-    print(a + b)
-"""
+    agents = [
+        AnalyzerAgent(),
+        OptimizerAgent(),
+        DocAgent(),
+    ]
 
-    # EN: Build initial state.
-    # FR: Construire l'état initial.
-    state = State(code_input=sample_code)
-
-    # EN: Create the Supervisor with the three agents.
-    # FR: Créer le Superviseur avec les trois agents.
-    supervisor = Supervisor(
-        analyzer_cls=AnalyzerAgent,
-        optimizer_cls=OptimizerAgent,
-        doc_agent_cls=DocAgent,
-    )
-
-    # EN: Run the full pipeline.
-    # FR: Exécuter le pipeline complet.
+    supervisor = Supervisor(agents)
     final_state = supervisor.run(state)
 
-    # EN: Display results.
-    # FR: Afficher les résultats.
-    print("=== ANALYSIS ===")
-    print(final_state.analysis or "<no analysis>")
-
-    print("\n=== OPTIMIZED CODE ===")
-    print(final_state.optimized_code or "<no optimized code>")
-
-    print("\n=== DOCUMENTATION ===")
-    print(final_state.documentation or "<no documentation>")
+    print("\n=== Final Output ===")
+    print("Analysis:", final_state.analysis)
+    print("Optimized Code:", final_state.optimized_code)
+    print("Documentation:", final_state.documentation)
 
 
 if __name__ == "__main__":
