@@ -41,4 +41,3 @@ class CodeFormatter:
             return code
 
         return code
-
