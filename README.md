@@ -1,38 +1,33 @@
-# AI Coding Assistant — Mid-Pro Level
+# AI Coding Assistant — Modular Multi‑Agent Architecture
 
-An intelligent, locally powered coding assistant built with **LangGraph**, designed to analyze, optimize, and document code using a multi‑agent workflow.  
-This project is fully local: **no external APIs, no cloud dependencies, no API keys required**.
+A clean, professional, and fully tested AI Coding Assistant built with a modular multi‑agent architecture.
+This project demonstrates engineering best practices, CI/CD automation, and a scalable design suitable for real‑world AI development.
 
----
+This repository is ideal for recruiters and engineering teams who want to evaluate:
 
-## 🚀 Features
+- code quality
+- architecture design
+- testing discipline
+- CI/CD maturity
+- ability to build maintainable AI systems
 
-- **LangGraph Orchestration**  
-  Supervisor + 3 specialized agents (Analyzer, Optimizer, DocAgent)
+## 🚀 Project Overview
 
-- **Local LLM Support (Qwen, etc.)**  
-  Works with local models via your preferred runtime (Ollama, LM Studio, etc.)
+The AI Coding Assistant processes a code snippet through a structured pipeline of specialized agents:
 
-- **Code Analysis**  
-  Tree‑sitter integration for syntax‑aware inspection
+1. AnalyzerAgent — performs static analysis
+2. OptimizerAgent — improves and rewrites the code
+3. DocAgent — generates documentation
+4. Supervisor — orchestrates the entire workflow
+5. State — maintains shared data across all agents
 
-- **Code Quality Tools**  
-  - Black (formatting)  
-  - Ruff (linting)  
-  - Mypy (optional type checking)
-
-- **Zero Cloud Dependencies**  
-  100% offline, private, and cost‑free
-
----
+This design mirrors real AI orchestration systems used in production environments.
 
 ## 📦 Requirements
 
 - Python **3.11+**
 - pip (recommended)
 - Optional: local LLM runtime (Ollama, LM Studio, etc.)
-
----
 
 ## 🛠 Installation
 
