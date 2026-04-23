@@ -72,5 +72,3 @@ Format code
 - black src/ tests/
 Lint
 - ruff check src/ tests/
-License
-- MIT License
