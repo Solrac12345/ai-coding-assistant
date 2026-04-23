@@ -73,7 +73,9 @@ ignore = [
     "E501",  # line too long (handled by black)
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
+# Keep this section empty (or remove it entirely)
+# profile does NOT go here
 
 [tool.mypy]
 python_version = "3.11"

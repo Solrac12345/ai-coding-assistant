@@ -1,5 +1,4 @@
 import subprocess
-from typing import Optional
 
 
 class CodeFormatter:
@@ -29,8 +28,7 @@ class CodeFormatter:
             process = subprocess.run(
                 ["black", "-q", "-"],
                 input=code.encode("utf-8"),
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
+                capture_output=True,
                 check=False,
             )
 
@@ -43,3 +41,4 @@ class CodeFormatter:
             return code
 
         return code
+

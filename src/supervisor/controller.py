@@ -1,4 +1,3 @@
-from typing import Type
 from src.state.state import State
 
 
@@ -17,7 +16,7 @@ class Supervisor:
         prévisible et sécurisé.
     """
 
-    def __init__(self, analyzer_cls: Type, optimizer_cls: Type, doc_agent_cls: Type):
+    def __init__(self, analyzer_cls: type, optimizer_cls: type, doc_agent_cls: type):
         """
         EN:
             The Supervisor receives the agent classes (not instances) so it can

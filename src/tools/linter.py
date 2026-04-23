@@ -1,5 +1,4 @@
 import subprocess
-from typing import List
 
 
 class CodeLinter:
@@ -15,7 +14,7 @@ class CodeLinter:
         sur une chaîne de code et renvoyer les problèmes signalés.
     """
 
-    def lint_code(self, code: str) -> List[str]:
+    def lint_code(self, code: str) -> list[str]:
         """
         EN:
             Run Ruff on the provided code using subprocess.
@@ -29,8 +28,7 @@ class CodeLinter:
             process = subprocess.run(
                 ["ruff", "-"],
                 input=code.encode("utf-8"),
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
+                capture_output=True,
                 check=False,
             )
 

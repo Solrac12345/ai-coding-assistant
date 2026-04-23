@@ -1,8 +1,8 @@
+from src.agents.analyzer import AnalyzerAgent
+from src.agents.doc_agent import DocAgent
+from src.agents.optimizer import OptimizerAgent
 from src.state.state import State
 from src.supervisor.controller import Supervisor
-from src.agents.analyzer import AnalyzerAgent
-from src.agents.optimizer import OptimizerAgent
-from src.agents.doc_agent import DocAgent
 
 
 def main():

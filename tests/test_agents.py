@@ -1,7 +1,7 @@
-from src.state.state import State
 from src.agents.analyzer import AnalyzerAgent
-from src.agents.optimizer import OptimizerAgent
 from src.agents.doc_agent import DocAgent
+from src.agents.optimizer import OptimizerAgent
+from src.state.state import State
 
 
 def test_analyzer_agent():

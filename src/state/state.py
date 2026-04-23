@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Optional, Dict, Any
+from typing import Any
 
 
 @dataclass
@@ -24,16 +24,16 @@ class State:
 
     # EN: Human-readable analysis of the input code (issues, smells, patterns).
     # FR: Analyse lisible du code (problèmes, mauvaises pratiques, motifs).
-    analysis: Optional[str] = None
+    analysis: str | None = None
 
     # EN: Improved / refactored version of the original code.
     # FR: Version améliorée / refactorisée du code original.
-    optimized_code: Optional[str] = None
+    optimized_code: str | None = None
 
     # EN: Generated documentation (docstrings, comments, explanations).
     # FR: Documentation générée (docstrings, commentaires, explications).
-    documentation: Optional[str] = None
+    documentation: str | None = None
 
     # EN: Extra metadata for scalability (language, complexity, tags, etc.).
     # FR: Métadonnées supplémentaires pour la scalabilité (langage, complexité, tags, etc.).
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
