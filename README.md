@@ -5,11 +5,11 @@ This project demonstrates engineering best practices, CI/CD automation, and a sc
 
 This repository is ideal for recruiters and engineering teams who want to evaluate:
 
-- code quality
-- architecture design
-- testing discipline
+- Code quality
+- Architecture design
+- Testing discipline
 - CI/CD maturity
-- ability to build maintainable AI systems
+- Ability to build maintainable AI systems
 
 ## 🚀 Project Overview
 
