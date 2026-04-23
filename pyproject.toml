@@ -75,7 +75,6 @@ ignore = [
 
 [tool.ruff.isort]
 profile = "black"
-line-length = 100
 
 [tool.mypy]
 python_version = "3.11"
