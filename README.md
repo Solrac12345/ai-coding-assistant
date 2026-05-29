@@ -23,6 +23,21 @@ The AI Coding Assistant processes a code snippet through a structured pipeline o
 
 This design mirrors real AI orchestration systems used in production environments.
 
+## 🎯 Problem & Solution
+
+### Problem
+Software teams often spend too much time manually reviewing code quality, improving readability, and generating documentation. This can slow down development, introduce inconsistent standards, and make collaboration harder.
+
+### Solution
+This project provides an AI-powered coding assistant that automates key parts of the workflow:
+
+- analyzes code for issues and smells
+- suggests or applies improvements
+- generates helpful documentation
+- coordinates the process through a modular multi-agent architecture
+
+The result is a faster, more consistent, and more maintainable development workflow.
+
 ## 📦 Requirements
 
 - Python **3.11+**
@@ -66,9 +81,14 @@ The assistant follows a sequential multi‑agent workflow:
 
 Usage
 - Run the assistant with: python src/main.py --file path/to/your_code.py
+- python -m src.main 
 Development
 - pytest
 Format code
 - black src/ tests/
 Lint
 - ruff check src/ tests/
+
+## 📄 License
+
+This project is licensed under the MIT License.
